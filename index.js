@@ -26,7 +26,7 @@ async function init() {
     // if this method finds access to audio and video input we can startWebcam()
 
     try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: {width: 1280, height: 720, frameRate: 30} });
         startWebcam(stream);
     } catch (err) {
         console.log("Error getting media device.")
