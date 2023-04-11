@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 }
 
 // Get the blob data from the uploaded file
-$file = $_FILES["file"]["tmp_name"];
+$file = $_FILES["segment"]["tmp_name"];
 $blobData = addslashes(file_get_contents($file));
 
 // Prepare and bind the SQL statement
