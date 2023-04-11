@@ -89,9 +89,10 @@ navigator.mediaDevices.getUserMedia(constraints)
 
 
 
-        // when button is clicked upload BLOB to server and display success/fail message
+        // upload button functionality, when clicked -> upload BLOB to server and display success/fail message
         uploadBtn.onclick = () => {
             // call the function to segment and upload the recordedBlob to DB
+            // fx should return true or false for success or failure
             let status = segmentAndUpload(recordedBlob)
             if (status == true) {
                 successMessage.style.display = "block"
