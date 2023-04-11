@@ -2,8 +2,8 @@
 
 // Database connection 
 $servername = "localhost";
-$username = "lab2";
-$password = "video";
+$username = "root";
+$password = "mysql";
 $dbname = "comp445";
 
 // Create a new database connection
@@ -13,15 +13,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// prepare and bind the insert statement
+// Get the blob data from the uploaded file
+$file = $_FILES["file"]["tmp_name"];
+$blobData = addslashes(file_get_contents($file));
+
+// Prepare and bind the SQL statement
 $stmt = $conn->prepare("INSERT INTO videoSegments (videoType, videoData) VALUES (?, ?)");
-$stmt->bind_param("sb", $videoType, $videoData);
+$stmt->bind_param("ss", $videoType, $blobData);
 
-// set the video type and data
-$videoType = "video/mp4"; 
-$videoData = file_get_contents($_FILES['video']['tmp_name']);
-
-// execute the statement
+// Set the parameters and execute the statement
+$videoType = "video/mp4"; // Set the video type here
 $stmt->execute();
 
 // check for errors in the execution
