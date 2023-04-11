@@ -112,13 +112,13 @@ navigator.mediaDevices.getUserMedia(constraints)
 
 async function segmentAndUpload(blob) {
     const segmentLength = 3000; // 3 seconds in milliseconds
-    const segmentCount = Math.ceil(videoBlob.size / segmentLength);
+    const segmentCount = Math.ceil(blob.size / segmentLength);
     const segments = [];
 
     for (let i = 0; i < segmentCount; i++) {
         const start = i * segmentLength;
-        const end = Math.min(start + segmentLength, videoBlob.size);
-        const segmentBlob = videoBlob.slice(start, end);
+        const end = Math.min(start + segmentLength, blob.size);
+        const segmentBlob = blob.slice(start, end);
         segments.push(segmentBlob);
     }
 
