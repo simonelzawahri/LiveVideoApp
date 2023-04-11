@@ -16,12 +16,35 @@
 <body>
 
     <div id="main">
+        <h3>Welcome to LiveVideoApp</h3>
+        <p>
+            <u>DIRECTIONS</u> 
+            <br><br>
+            Step 1: open cam <br>
+            Step 2: record a video <br>
+            Step 3: upload video to DB <br>
+        </p>
 
-        <video id="video" autoplay playsinline loop>CANT LOAD VIDEO:(</video>
-        <div id="button">Record</div>
+        <div id="videos">
+            <video id="liveVid" controls autoplay playsinline loop>CANT LOAD VIDEO:(</video>
+            <video id="recordedVid" controls  >CANT LOAD VIDEO:(</video>
+        </div>
+
+        <div id="controls">
+            <div id="openCamButton">Open Cam</div>
+            <div id="recordButton">Record</div>
+            <div id="uploadButton">Upload</div> <br>
+        </div>
+
+        <div id="uploadMessage">
+            <p id="uploadSuccess">Uploaded Successfully</p>
+            <p id="uploadFail">Failed to Upload</p>
+        </div>
 
     </div>
 
+
+ 
 
 
 
