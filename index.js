@@ -47,74 +47,41 @@ navigator.mediaDevices.getUserMedia(constraints)
         }
 
 
-        // // record button functionality, start and stop recording
-        // recordBtn.onclick = () => {
-        //     // if recordBtn is black && openCamBtn is red
-        //     if (recordBtn.style.backgroundColor == "rgb(0, 0, 0)" &&
-        //         openCamBtn.style.backgroundColor == "rgb(255, 40, 40)") {
-
-        //         recordBtn.style.backgroundColor = "rgb(255, 40, 40)";
-        //         recordBtn.innerText = "Recording";
-        //         mediaRecorder = new MediaRecorder(mediaStream);
-        //         // while recording push data to recordedChunks array
-        //         mediaRecorder.ondataavailable = (event) => {
-        //             if (event.data && event.data.size > 0) {
-        //                 recordedChunks.push(event.data);
-        //             }
-        //         }
-        //         // start recording
-        //         mediaRecorder.start();
-        //         console.log(mediaRecorder.state);
-
-        //     }
-        //     // else change recordBtn to black and stop recording
-        //     else {
-        //         recordBtn.style.backgroundColor = "rgb(0, 0, 0)";
-        //         recordBtn.innerText = "Record";
-        //         mediaRecorder.onstop = () => {
-        //             // on stop, store recordedChunks ARRAY in recordedBlob BLOB 
-        //             recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
-        //             // clear array
-        //             recordedChunks = [];
-        //             // create a object url that can be used as the video src for recordedVid
-        //             let videoUrl = window.URL.createObjectURL(recordedBlob);
-        //             // assign url to src
-        //             recordedVid.src = videoUrl
-        //         };
-        //         // stop recording
-        //         mediaRecorder.stop();
-        //         console.log(mediaRecorder.state);
-        //     }
-        // }
-
-        // function to create mediaRecorder object and set onstop property
-        const createMediaRecorder = () => {
-            mediaRecorder = new MediaRecorder(mediaStream);
-            mediaRecorder.ondataavailable = (event) => {
-                if (event.data && event.data.size > 0) {
-                    recordedChunks.push(event.data);
-                }
-            }
-            mediaRecorder.onstop = () => {
-                recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
-                recordedChunks = [];
-                let videoUrl = window.URL.createObjectURL(recordedBlob);
-                recordedVid.src = videoUrl;
-            };
-        }
-
         // record button functionality, start and stop recording
         recordBtn.onclick = () => {
+            // if recordBtn is black && openCamBtn is red
             if (recordBtn.style.backgroundColor == "rgb(0, 0, 0)" &&
                 openCamBtn.style.backgroundColor == "rgb(255, 40, 40)") {
+
                 recordBtn.style.backgroundColor = "rgb(255, 40, 40)";
                 recordBtn.innerText = "Recording";
-                createMediaRecorder();
+                mediaRecorder = new MediaRecorder(mediaStream);
+                // while recording push data to recordedChunks array
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data && event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                }
+                // start recording
                 mediaRecorder.start();
                 console.log(mediaRecorder.state);
-            } else {
+
+            }
+            // else change recordBtn to black and stop recording
+            else {
                 recordBtn.style.backgroundColor = "rgb(0, 0, 0)";
                 recordBtn.innerText = "Record";
+                mediaRecorder.onstop = () => {
+                    // on stop, store recordedChunks ARRAY in recordedBlob BLOB 
+                    recordedBlob = new Blob(recordedChunks, { type: 'video/mp4' });
+                    // clear array
+                    recordedChunks = [];
+                    // create a object url that can be used as the video src for recordedVid
+                    let videoUrl = window.URL.createObjectURL(recordedBlob);
+                    // assign url to src
+                    recordedVid.src = videoUrl
+                };
+                // stop recording
                 mediaRecorder.stop();
                 console.log(mediaRecorder.state);
             }

@@ -1,5 +1,15 @@
 <?php
 
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["segment"]["name"]);
+$file = $_FILES['segment']['tmp_name'];
+
+if (move_uploaded_file($_FILES["segment"]["tmp_name"], $target_file)) {
+    echo "The file ". htmlspecialchars(basename($_FILES["segment"]["name"])). " has been uploaded.";
+} else {
+    echo "There was an error uploading your file.";
+}
+
 // Database connection 
 $servername = "localhost";
 $username = "root";
