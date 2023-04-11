@@ -124,7 +124,7 @@ async function segmentAndUpload(blob) {
 
     const formData = new FormData();
     for (let i = 0; i < segments.length; i++) {
-        formData.append('segments[]', segments[i], `segment_${i}.mp4`);
+        formData.append('videoData', segments[i], `segment_${i}.mp4`);
     }
 
     // upload segments to server using the fetch() method
