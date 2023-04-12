@@ -32,7 +32,7 @@ $stmt = $conn->prepare("INSERT INTO videoSegments (videoType, videoData) VALUES 
 $stmt->bind_param("ss", $videoType, $blobData);
 
 // Set the parameters and execute the statement
-$videoType = "video/mp4"; // Set the video type here
+$videoType = "video/mp4"; 
 $stmt->execute();
 
 // check for errors in the execution
